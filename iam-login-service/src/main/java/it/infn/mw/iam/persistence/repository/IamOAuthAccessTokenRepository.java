@@ -46,17 +46,15 @@ public interface IamOAuthAccessTokenRepository
     @Param("clientId") String clientId, @Param("timestamp") Date timestamp,
     Pageable op);
 
-  
-    @Query("select t from OAuth2AccessTokenEntity t " +
-    "where (t.authenticationHolder.userAuth.name = :userId) " +
-    "and (t.authenticationHolder.clientId = :clientId) " +
-    "and (t.expiration is NULL or t.expiration > :timestamp) order by t.expiration"
-    ) Page<OAuth2AccessTokenEntity> findValidAccessTokensForUserAndClient(
-    
+  @Query("select t from OAuth2AccessTokenEntity t "
+    + "where (t.authenticationHolder.userAuth.name = :userId) "
+    + "and (t.authenticationHolder.clientId = :clientId) "
+    + "and (t.expiration is NULL or t.expiration > :timestamp) order by t.expiration")
+  Page<OAuth2AccessTokenEntity> findValidAccessTokensForUserAndClient(
+
     @Param("userId") String userId, @Param("clientId") String clientId,
-    
+
     @Param("timestamp") Date timestamp, Pageable op);
-   
 
   @Query("select t from OAuth2AccessTokenEntity t "
     + "where (t.authenticationHolder.scope not in ('registration-token', 'resource-token')) "

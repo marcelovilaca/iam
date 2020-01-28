@@ -57,7 +57,6 @@ public class AccessTokenGetListTests extends TestTokensUtils {
   public static final String[] SCOPES_REGISTRATION = {"registration-token"};
   public static final String[] SCOPES_RESOURCE = {"resource-token"};
 
-  
   public static final String TEST_CLIENT_ID = "token-lookup-client";
   public static final String TEST_CLIENT2_ID = "password-grant";
   public static final int FAKE_TOKEN_ID = 12345;
