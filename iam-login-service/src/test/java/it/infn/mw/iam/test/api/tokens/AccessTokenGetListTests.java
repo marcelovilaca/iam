@@ -54,7 +54,10 @@ public class AccessTokenGetListTests extends TestTokensUtils {
   public static long id = 1L;
 
   public static final String[] SCOPES = {"openid", "profile"};
+  public static final String[] SCOPES_REGISTRATION = {"registration-token"};
+  public static final String[] SCOPES_RESOURCE = {"resource-token"};
 
+  
   public static final String TEST_CLIENT_ID = "token-lookup-client";
   public static final String TEST_CLIENT2_ID = "password-grant";
   public static final int FAKE_TOKEN_ID = 12345;
@@ -484,4 +487,64 @@ public class AccessTokenGetListTests extends TestTokensUtils {
     assertThat(atl.getStartIndex(), equalTo(1));
     assertThat(atl.getItemsPerPage(), equalTo(0));
   }
+  
+  @Test
+  public void getAccessTokenListWithoutRegistrationTokens() throws Exception {
+
+    ClientDetailsEntity client = loadTestClient(TEST_CLIENT_ID);
+    
+    ClientDetailsEntity client2 = loadTestClient(TEST_CLIENT2_ID);
+    
+    List<OAuth2AccessTokenEntity> accessTokens = Lists.newArrayList();
+    
+    OAuth2AccessTokenEntity at = buildAccessToken(client, null,
+      SCOPES_REGISTRATION);
+
+    ListResponseDTO<AccessToken> atl = getAccessTokenList();
+    
+    assertThat(tokenRepository.count(), equalTo(1L));
+    assertThat(atl.getTotalResults(), equalTo(0L));
+    assertThat(atl.getStartIndex(), equalTo(1));
+    assertThat(atl.getItemsPerPage(), equalTo(0));
+    assertThat(atl.getResources().size(), equalTo(0));
+
+    accessTokens.add(buildAccessToken(client2, TESTUSER_USERNAME, SCOPES));
+    
+    ListResponseDTO<AccessToken> atl1 = getAccessTokenList();
+   
+    assertThat(tokenRepository.count(), equalTo(2L));
+    assertThat(atl1.getTotalResults(), equalTo(1L));
+
+
+    }
+
+  
+    @Test public void getAccessTokenListWithoutResourceTokens() throws
+    Exception {
+    
+    ClientDetailsEntity client = loadTestClient(TEST_CLIENT_ID); 
+    
+    ClientDetailsEntity client2 = loadTestClient(TEST_CLIENT2_ID);
+    
+    List<OAuth2AccessTokenEntity> accessTokens = Lists.newArrayList();
+    
+    OAuth2AccessTokenEntity at = buildAccessToken(client, null,
+    SCOPES_RESOURCE);
+
+    ListResponseDTO<AccessToken> atl = getAccessTokenList();
+    
+    assertThat(tokenRepository.count(), equalTo(1L));
+    assertThat(atl.getTotalResults(), equalTo(0L));
+    assertThat(atl.getStartIndex(), equalTo(1));
+    assertThat(atl.getItemsPerPage(), equalTo(0));
+    assertThat(atl.getResources() .size(), equalTo(0));
+    
+    accessTokens.add(buildAccessToken(client2, TESTUSER_USERNAME, SCOPES));
+    
+    ListResponseDTO<AccessToken> atl1 = getAccessTokenList();
+   
+    assertThat(tokenRepository.count(), equalTo(2L));
+    assertThat(atl1.getTotalResults(), equalTo(1L));
+    
+    }
 }
