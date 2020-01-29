@@ -560,7 +560,7 @@ public class AccessTokenGetListTests extends TestTokensUtils {
     Page<OAuth2AccessTokenEntity> tokens =
       tokenRepository.findAllValidAccessTokens(new Date(), new OffsetPageable(0, 10));
   
-    tokens.forEach(t -> assertThat(t.getScope(), not(hasItem("registration-token"))));
+    tokens.forEach(t -> assertThat(t.getScope(), not(hasItem("resource-token"))));
     
     }
 }
