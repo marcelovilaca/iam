@@ -16,7 +16,6 @@
 package it.infn.mw.iam.test.api.tokens;
 
 import static it.infn.mw.iam.api.tokens.TokensControllerSupport.TOKENS_MAX_PAGE_SIZE;
-import static org.hamcrest.CoreMatchers.everyItem;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.equalTo;
@@ -24,7 +23,6 @@ import static org.junit.Assert.assertThat;
 import java.util.Date;
 import java.util.List;
 
-import org.hamcrest.core.Every;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
