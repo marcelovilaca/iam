@@ -70,6 +70,7 @@
           self.enabled = true;
         }
 
+//Start of Icon choose button
         self.openSelectIconDialog = function (icon) {
     
             var modalInstance = $uibModal.open({
@@ -92,6 +93,7 @@
               body: 'Icon ' + icon + ' selected'
             });
         };
+//Finish of Icon choose button
 
         self.submit = function () {
     
@@ -137,7 +139,7 @@
         self.$onInit = function () {
           self.enabled = true;
         }
-
+//Start of Icon choose button
         self.openSelectIconDialog = function (icon) {
     
             var modalInstance = $uibModal.open({
@@ -160,7 +162,8 @@
               body: 'Icon ' + icon + ' selected'
             });
         };
-      
+// Finish of Icon choose button
+
         self.updateScope = function (scope) {
           
           self.scope = scope
@@ -201,7 +204,7 @@
           $uibModalInstance.dismiss("cancel");
         }
       }
-//i
+//Start of Icon choose button
     function SelectIconController($q, $scope, $rootScope, $uibModalInstance, icon) {
         var self = this;
 
@@ -236,7 +239,7 @@
             $uibModalInstance.dismiss("cancel");
         }
     }
-//f
+//Finish of Icon choose button
     function ScopesListController($q, $scope, $rootScope, $uibModal, ModalService,
         ScopesService, toaster) {
       var self = this;

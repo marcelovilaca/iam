@@ -55,17 +55,17 @@
         }
 
         function updateScopeById(scope) {
-            console.debug("updateScopeById: ", scope.id, scope.value);
+            console.debug("Updating scope by ID: ", scope.id, scope.value);
             return doPut(scope);
         }
 
         function addScope(scope) {
-            console.debug("addScope: ", scope.id, scope.value);
+            console.debug("Adding Scope: ", scope.id, scope.value);
             return doPost(scope);
         }
 
         function removeScope(scope) {
-            console.debug("removeScope: ", scope.id, scope.value)
+            console.debug("Removing Scope: ", scope.id, scope.value)
             return doDelete(scope);
         }
 
